@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<title>Movie Invitation 🍿</title>
+
+
+<style>
+
+body {
+
+    margin: 0;
+    height: 100vh;
+    background-color: #fff8fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Patrick Hand', cursive;
+    color: #444;
+    overflow: hidden;
+
+}
+
+
+.container {
+
+    text-align:center;
+    z-index:2;
+
+}
+
+
+button {
+
+    padding:15px 30px;
+    border-radius:30px;
+    border:none;
+    font-size:20px;
+    cursor:pointer;
+    margin:10px;
+    font-family:inherit;
+
+}
+
+
+.open {
+
+    background:#f8b6c8;
+    color:white;
+
+}
+
+
+
+.ticket,
+.confirmation {
+
+    background:#fff0f5;
+    color:#444;
+    width:85%;
+    max-width:350px;
+    padding:25px;
+    border-radius:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+}
+
+
+
+.ticket {
+
+    display:none;
+    animation:appear 1s;
+    position:relative;
+
+}
+
+
+.confirmation {
+
+    display:none;
+    animation:appear 1s;
+
+}
+
+
+
+.ticket::after {
+
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    top:75px;
+    border-top:2px dashed #f4a6b8;
+
+}
+
+
+
+.ticket h1,
+.confirmation h1 {
+
+    color:#e75480;
+
+}
+
+
+
+.accept {
+
+    background:#9be7c4;
+    color:white;
+
+}
+
+
+
+.maybe {
+
+    background:#f7a6b8;
+    color:white;
+
+}
+
+
+
+/* Popcorn */
+
+.popcorn {
+
+    font-size:45px;
+    animation:bounce 1s infinite alternate;
+
+}
+
+
+
+/* Flowers */
+
+.flower {
+
+    position:absolute;
+    font-size:35px;
+    opacity:0.7;
+    animation:float 8s infinite linear;
+
+}
+
+
+.flower2 {
+
+    left:20%;
+    animation-delay:2s;
+
+}
+
+
+.flower3 {
+
+    right:20%;
+    animation-delay:4s;
+
+}
+
+
+
+
+/* Animations */
+
+
+@keyframes bounce {
+
+from {
+
+transform:translateY(0);
+
+}
+
+to {
+
+transform:translateY(-10px);
+
+}
+
+}
+
+
+
+@keyframes appear {
+
+from {
+
+opacity:0;
+transform:scale(0.5);
+
+}
+
+to {
+
+opacity:1;
+transform:scale(1);
+
+}
+
+}
+
+
+
+@keyframes float {
+
+from {
+
+transform:translateY(100vh);
+
+}
+
+to {
+
+transform:translateY(-20vh);
+
+}
+
+}
+
+
+
+@keyframes spin {
+
+0% {
+
+transform:rotate(0deg) scale(1);
+
+}
+
+
+100% {
+
+transform:rotate(360deg) scale(0);
+
+}
+
+}
+
+
+
+
+/* Phone optimisation */
+
+@media(max-width:600px){
+
+button {
+
+width:85%;
+
+}
+
+
+h2 {
+
+font-size:24px;
+
+}
+
+}
+
+
+
+</style>
+
+</head>
+
+
+
+
+<body>
+
+
+<!-- Floating flowers -->
+
+<div class="flower">🌸</div>
+<div class="flower flower2">🌷</div>
+<div class="flower flower3">🌸</div>
+
+
+
+
+<div class="container">
+
+
+
+<!-- Opening Screen -->
+
+
+<div id="start">
+
+
+<div class="popcorn">🍿</div>
+
+
+<h2> hi princess :)</h2>
+
+
+<p>I have a small invitation for you...</p>
+
+
+<button class="open" onclick="openTicket()">
+
+🎬 Roll the Film
+
+</button>
+
+
+</div>
+
+
+
+
+
+<!-- Movie Ticket Page -->
+
+
+<div class="ticket" id="ticket">
+
+
+<h1>🎟 Movie Date</h1>
+
+
+<p>
+You are invited to watch:
+</p>
+
+
+<h2>Toy Story 5 🎬</h2>
+
+
+<p>
+
+🍿 Snacks: Required<br><br>
+
+📅 Date: TUesday, 14 July 2026<br>
+
+⏰ Time: 2PM<br>
+
+📍 Cinema: GV Bugis+ 
+
+</p>
+
+
+
+<p>
+
+Thought it would be fun to watch it together and hang out :)
+
+</p>
+
+
+
+<button class="accept" onclick="accept()">
+
+✅ Accept
+
+</button>
+
+
+
+<button class="maybe" onclick="maybe()">
+
+🙂 Maybe another time
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+<!-- Confirmation Page -->
+
+
+<div class="confirmation" id="confirmation">
+
+
+<h1>🎉 See you soon!</h1>
+
+
+<p>
+Your movie ticket has been reserved 🍿
+</p>
+
+
+<h2>Toy Story 5 🎬</h2>
+
+
+<p>
+Looking forward to watching it together :)
+</p>
+
+
+<p>
+🚀 Mission accepted
+</p>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+function openTicket(){
+
+
+document.getElementById("start").style.animation="spin 1s";
+
+
+setTimeout(function(){
+
+
+document.getElementById("start").style.display="none";
+
+
+document.getElementById("ticket").style.display="block";
+
+
+},1000);
+
+
+}
+
+
+
+
+
+function accept(){
+
+
+document.getElementById("ticket").style.display="none";
+
+
+document.getElementById("confirmation").style.display="block";
+
+
+}
+
+
+
+
+function maybe(){
+
+
+alert("No worries :) Maybe another time!");
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
